@@ -24,6 +24,26 @@ namespace MyLogin
                 var result = await LoginAsync();
                 LoginButton.Content = result;
 
+                await Task.Delay(1);
+                LoginButton.Content = "1";
+                await Task.Delay(1);
+                LoginButton.Content = "2";
+                await Task.Delay(1);
+                LoginButton.Content = "3";
+                await Task.Delay(1);
+                LoginButton.Content = "4";
+                await Task.Delay(1);
+                LoginButton.Content = "5";
+                await Task.Delay(1);
+                LoginButton.Content = "6";
+                await Task.Delay(1);
+                LoginButton.Content = "7";
+                await Task.Delay(1);
+                LoginButton.Content = "8";
+                await Task.Delay(1);
+                LoginButton.Content = "9";
+                await Task.Delay(1);
+                LoginButton.Content = "10";
 
                 LoginButton.IsEnabled = true;
                 BusyIndicator.Visibility = Visibility.Hidden;
@@ -42,11 +62,12 @@ namespace MyLogin
             {
                 //throw new UnauthorizedAccessException();
 
-                var loginTask = Task.Run(() =>
+                var loginTask = Task.Run(async () =>
                 {
                     //throw new UnauthorizedAccessException();
 
-                    Thread.Sleep(2000);
+                    await Task.Delay(2000);
+
                     return "Login Successful!!";
                 });
 
