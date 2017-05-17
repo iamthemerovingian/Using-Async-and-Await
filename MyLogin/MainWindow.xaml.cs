@@ -18,17 +18,25 @@ namespace MyLogin
         {
             try
             {
-                await LoginAsync();
+                LoginButton.IsEnabled = false;
+                BusyIndicator.Visibility = Visibility.Visible;
+
+                var result = await LoginAsync();
+                LoginButton.Content = result;
+
+
+                LoginButton.IsEnabled = true;
+                BusyIndicator.Visibility = Visibility.Hidden;
             }
             catch (Exception ex)
             {
-                LoginButton.Content = "Login Failed";
+                LoginButton.Content = "Internal Error!!!";
             }
         }
 
-        private async Task LoginAsync()
+        private async Task<string> LoginAsync()
         {
-            throw new UnauthorizedAccessException();
+            //throw new UnauthorizedAccessException();
 
             try
             {
@@ -42,10 +50,11 @@ namespace MyLogin
                     return "Login Successful!!";
                 });
 
-                LoginButton.Content = result;
+                return result;
             }
             catch (Exception e)
             {
+                return "Login Failed!!";
             }
         }
     }
