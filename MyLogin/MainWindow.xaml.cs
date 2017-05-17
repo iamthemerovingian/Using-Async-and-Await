@@ -16,16 +16,7 @@ namespace MyLogin
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var task = Task.Delay(1).ContinueWith((t) =>
-            {
-                Dispatcher.Invoke(() => 
-                {
-                    //Do Nothing.
-                });
-            });
-
-            //Waits untill task is finished.
-            task.Wait();
+            var result = LoginAsync().Result;
         }
 
         private async Task<string> LoginAsync()
