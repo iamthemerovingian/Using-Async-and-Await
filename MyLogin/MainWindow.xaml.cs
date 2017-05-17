@@ -42,7 +42,7 @@ namespace MyLogin
             {
                 //throw new UnauthorizedAccessException();
 
-                var result = await Task.Run(() =>
+                var loginTask = Task.Run(() =>
                 {
                     //throw new UnauthorizedAccessException();
 
@@ -50,7 +50,13 @@ namespace MyLogin
                     return "Login Successful!!";
                 });
 
-                return result;
+                var logTask = Task.Delay(2000); //Log the login with the server.
+
+                var purchaseTask = Task.Delay(1000); //Load the customer's files.
+
+                await Task.WhenAll(loginTask, logTask, purchaseTask);
+
+                return loginTask.Result;
             }
             catch (Exception e)
             {
