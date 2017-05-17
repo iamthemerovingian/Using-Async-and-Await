@@ -16,42 +16,16 @@ namespace MyLogin
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            try
+            var task = Task.Delay(1).ContinueWith((t) =>
             {
-                LoginButton.IsEnabled = false;
-                BusyIndicator.Visibility = Visibility.Visible;
+                Dispatcher.Invoke(() => 
+                {
+                    //Do Nothing.
+                });
+            });
 
-                var result = await LoginAsync();
-                LoginButton.Content = result;
-
-                await Task.Delay(1);
-                LoginButton.Content = "1";
-                await Task.Delay(1);
-                LoginButton.Content = "2";
-                await Task.Delay(1);
-                LoginButton.Content = "3";
-                await Task.Delay(1);
-                LoginButton.Content = "4";
-                await Task.Delay(1);
-                LoginButton.Content = "5";
-                await Task.Delay(1);
-                LoginButton.Content = "6";
-                await Task.Delay(1);
-                LoginButton.Content = "7";
-                await Task.Delay(1);
-                LoginButton.Content = "8";
-                await Task.Delay(1);
-                LoginButton.Content = "9";
-                await Task.Delay(1);
-                LoginButton.Content = "10";
-
-                LoginButton.IsEnabled = true;
-                BusyIndicator.Visibility = Visibility.Hidden;
-            }
-            catch (Exception ex)
-            {
-                LoginButton.Content = "Internal Error!!!";
-            }
+            //Waits untill task is finished.
+            task.Wait();
         }
 
         private async Task<string> LoginAsync()
