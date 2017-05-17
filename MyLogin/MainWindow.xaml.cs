@@ -16,7 +16,7 @@ namespace MyLogin
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var result = LoginAsync().Result;
+            var result = Task.Run(()=> LoginAsync()).Result;
         }
 
         private async Task<string> LoginAsync()
