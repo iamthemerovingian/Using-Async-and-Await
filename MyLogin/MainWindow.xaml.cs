@@ -14,9 +14,11 @@ namespace MyLogin
             InitializeComponent();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            await Task.Run(() => Thread.Sleep(2000));
+
+            LoginButton.Content = "Login Successful!!";
         }
     }
 }
